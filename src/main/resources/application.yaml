@@ -1,0 +1,11 @@
+aws:
+  dynamodb:
+    endpoint: http://localhost:4566
+    person-table-name : dev-Persons
+  secretsmanager:
+    #    management api client
+  region : ap-southeast-2
+  profile: localstack
+
+server:
+  port: 8082
