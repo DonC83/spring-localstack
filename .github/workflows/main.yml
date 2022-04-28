@@ -17,3 +17,40 @@ jobs:
 
       - name: Run static analysis
         run: make verify
+
+  build:
+    runs-on: ubuntu-latest
+    name: Build application
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Set up java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt' # See 'Supported distributions' for available options
+          java-version: '17'
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Compile the application classes
+        run: make build
+
+  package:
+    runs-on: ubuntu-latest
+    name: Package application image
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/spring-localstack:latest
