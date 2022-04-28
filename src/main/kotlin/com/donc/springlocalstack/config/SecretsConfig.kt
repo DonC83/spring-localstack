@@ -7,9 +7,11 @@ import org.springframework.context.annotation.Configuration
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider
 import software.amazon.awssdk.regions.Region
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
+import java.net.URI
 
 @Configuration
 class SecretsConfig(
+    @Value("\${aws.endpoint}") private val endpoint: String,
     private val credentialsProvider: AwsCredentialsProvider,
 ) {
     @Bean
@@ -17,6 +19,7 @@ class SecretsConfig(
         SecretsManagerClient.builder()
             .region(Region.of(region))
             .credentialsProvider(credentialsProvider)
+            .endpointOverride(URI.create(endpoint))
             .build()
             .let(::SecretClient)
 }

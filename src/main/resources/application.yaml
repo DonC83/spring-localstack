@@ -1,6 +1,6 @@
 aws:
+  endpoint: http://localhost:4566
   dynamodb:
-    endpoint: http://localhost:4566
     person-table-name : dev-Persons
   secretsmanager:
     #    management api client

@@ -13,7 +13,7 @@ class SecretClient(
     private val logger: Logger
         get() = LoggerFactory.getLogger(javaClass)
 
-    fun <T> getSecretValue(secretName: String, valueType: Class<T>) : T {
+    fun <T> getSecretValue(secretName: String, valueType: Class<T>): T {
         try {
             val valueRequest = GetSecretValueRequest.builder()
                 .secretId(secretName)

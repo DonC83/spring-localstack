@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SpringLocalstackApplication
+class Application
 
 fun main(args: Array<String>) {
-    runApplication<SpringLocalstackApplication>(*args)
+    runApplication<Application>(*args)
 }

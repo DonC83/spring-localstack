@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable
 
 @Controller
 class TestController
-    (private val secretClient: SecretClient) {
+(private val secretClient: SecretClient) {
 
     @GetMapping("/secret/{secretName}", produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun getSecret(@PathVariable secretName : String): String {
+    fun getSecret(@PathVariable secretName: String): String {
         val secret = secretClient.getSecretValue(secretName, Auth0Secret::class.java)
         return secret.toString()
     }
-
 }

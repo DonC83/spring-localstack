@@ -10,9 +10,10 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient
 import java.net.URI
 
 @Configuration
-class Config (@Value("\${aws.region}") private val region: String,
-              @Value("\${aws.dynamodb.endpoint}") private val endpoint: String,
-              private val credentialsProvider: AwsCredentialsProvider
+class Config(
+    @Value("\${aws.region}") private val region: String,
+    @Value("\${aws.endpoint}") private val endpoint: String,
+    private val credentialsProvider: AwsCredentialsProvider
 ) {
 
     @Bean
@@ -27,6 +28,4 @@ class Config (@Value("\${aws.region}") private val region: String,
             .dynamoDbClient(client)
             .build()
     }
-
-
 }
