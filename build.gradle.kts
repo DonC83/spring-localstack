@@ -3,12 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.6.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.6.10"
-    kotlin("plugin.spring") version "1.6.10"
+    id("io.gitlab.arturbosch.detekt").version("1.20.0")
+    kotlin("jvm") version "1.6.20"
+    kotlin("plugin.spring") version "1.6.20"
 }
 
 group = "com.donc"
-version = "0.0.1-SNAPSHOT"
+
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
@@ -16,13 +17,14 @@ repositories {
 }
 
 dependencies {
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.20.0")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("software.amazon.awssdk:dynamodb:2.17.130")
-    implementation("software.amazon.awssdk:dynamodb-enhanced:2.17.130")
-    implementation("software.amazon.awssdk:secretsmanager:2.17.130")
+    implementation("software.amazon.awssdk:dynamodb:2.17.174")
+    implementation("software.amazon.awssdk:dynamodb-enhanced:2.17.174")
+    implementation("software.amazon.awssdk:secretsmanager:2.17.174")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
@@ -36,4 +38,10 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+detekt {
+    toolVersion = "1.20.0"
+    config = files("config/detekt/detekt.yml")
+    buildUponDefaultConfig = true
 }
