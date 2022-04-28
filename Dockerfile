@@ -8,6 +8,7 @@ COPY gradle ./gradle/
 # Retrieve all dependencies prior to copying source to avoid re-downloading every time source changes
 ARG VERSION
 COPY build.gradle.kts settings.gradle.kts ./
+COPY ./config/detekt/detekt.yml ./config/detekt/detekt.yml
 
 # Copy the source code and perform the final build
 COPY src ./src/
@@ -18,6 +19,6 @@ RUN ./gradlew build bootJar
 # **************
 FROM gcr.io/distroless/java17-debian11
 
-COPY --from=build /app/build/libs/account-service.jar /app.jar
+COPY --from=build /app/build/libs/spring-localstack.jar /app.jar
 
-CMD ["/app.jar"]
+CMD ["app.jar"]
