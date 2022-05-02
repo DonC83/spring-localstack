@@ -4,8 +4,12 @@ import { fail, check, sleep } from 'k6';
 const baseUrl = "http://localhost:8080";
 
 export const options = {
-  vus: 1,
-  duration: '5s'
+  // vus: 1,
+  // duration: '5s',
+  thresholds: {
+    // the rate of successful checks should be higher than 90%
+    checks: ['rate>0.9'],
+  },
 }
 
 // export function setup() {
