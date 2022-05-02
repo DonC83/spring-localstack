@@ -80,7 +80,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Start the stack
         run: |
-          make devstack.start
+          docker-compose -f ./devstack/docker-compose.yml up -d --remove-orphans
       - name: Start the service and run tests
         run: |
           docker run -d -p 8080:8080 --network devstack_backend -e "AWS_ENDPOINT=http://localstack:4566" -e "AWS_ACCESS_KEY_ID=foobar" -e "AWS_SECRET_ACCESS_KEY=foobar" --name=spring-localstack donc83/spring-localstack
@@ -116,7 +116,7 @@ jobs:
       - name: Clean up
         if: always()
         run: |
-          make devstack.stop
+          docker-compose -f ./devstack/docker-compose.yml down --remove-orphans
 
 
 
