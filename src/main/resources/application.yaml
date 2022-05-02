@@ -12,7 +12,7 @@ server:
 
 client:
   secret:
-    name: client_secret1
+    name: client_secret_1
 
 management:
   endpoints:
