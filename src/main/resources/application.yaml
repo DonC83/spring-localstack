@@ -1,11 +1,21 @@
 aws:
   endpoint: http://localhost:4566
   dynamodb:
-    person-table-name : dev-Persons
+    account-table-name : Account
   secretsmanager:
     #    management api client
   region : ap-southeast-2
   profile: localstack
 
 server:
-  port: 8082
+  port: 8080
+
+
+management:
+  endpoints:
+    web:
+      base-path: "/"
+  endpoint:
+    health:
+      enabled: true
+      show-details: always

@@ -1,9 +1,10 @@
 ---
-version: '3'
 services:
   localstack:
     image: localstack/localstack
     container_name: localstack
+    networks:
+      - backend
     ports:
       - "127.0.0.1:4566:4566"
       - "127.0.0.1:4571:4571"
@@ -19,3 +20,5 @@ services:
     volumes:
       - "./localstack/start.sh:/docker-entrypoint-initaws.d/start.sh"
 
+networks:
+  backend: {}

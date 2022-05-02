@@ -73,6 +73,8 @@ formatting:
     active: true
   EnumEntryNameCase:
     active: true
+  Indentation:
+    indentSize: 4
   MaximumLineLength:
     active: false
   MultiLineIfElse:

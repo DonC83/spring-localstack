@@ -1,8 +1,7 @@
 package com.donc.springlocalstack.model
 
-data class Auth0Secret(
-    val domain: String,
+data class Secret(
+    val name: String?,
     val clientId: String,
     val secret: String,
-    val scopes: Collection<String>?,
 )
