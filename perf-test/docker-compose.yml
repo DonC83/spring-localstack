@@ -20,5 +20,17 @@ services:
     volumes:
       - "./localstack/start.sh:/docker-entrypoint-initaws.d/start.sh"
 
+  spring-localstack:
+    image: donc83/spring-localstack
+    container_name: spring-localstack
+    networks:
+      - backend
+    ports:
+      - "8080:8080"
+    environment:
+      - AWS_ENDPOINT=http://localstack:4566
+      - AWS_ACCESS_KEY_ID=foobar
+      - AWS_SECRET_ACCESS_KEY=foobar
+
 networks:
   backend: {}
