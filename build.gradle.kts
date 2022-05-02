@@ -25,6 +25,7 @@ dependencies {
     implementation("software.amazon.awssdk:dynamodb:2.17.174")
     implementation("software.amazon.awssdk:dynamodb-enhanced:2.17.174")
     implementation("software.amazon.awssdk:secretsmanager:2.17.174")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
