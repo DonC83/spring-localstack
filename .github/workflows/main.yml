@@ -83,7 +83,11 @@ jobs:
           docker-compose -f ./devstack/docker-compose.yml up -d --remove-orphans
       - name: Start the service and run tests
         run: |
-          docker run -d -p 8080:8080 --network devstack_backend -e "AWS_ENDPOINT=http://localstack:4566" -e "AWS_ACCESS_KEY_ID=foobar" -e "AWS_SECRET_ACCESS_KEY=foobar" --name=spring-localstack donc83/spring-localstack
+          docker run -d -p 8080:8080 --network devstack_backend \
+            -e "AWS_ENDPOINT=http://localstack:4566" \
+            -e "AWS_ACCESS_KEY_ID=foobar" \
+            -e "AWS_SECRET_ACCESS_KEY=foobar" \
+            --name=spring-localstack donc83/spring-localstack
           sleep 30
           ./k6 run ./perf-test/script.js
 #      - name: Start stack & service
@@ -116,6 +120,7 @@ jobs:
       - name: Clean up
         if: always()
         run: |
+          docker stop spring-localstack
           docker-compose -f ./devstack/docker-compose.yml down --remove-orphans
 
 
