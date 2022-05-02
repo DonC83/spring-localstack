@@ -4,8 +4,8 @@ import { fail, check, sleep } from 'k6';
 const baseUrl = "http://localhost:8080";
 
 export const options = {
-  vus: 10,
-  duration: '30s'
+  vus: 1,
+  duration: '5s'
 }
 
 // export function setup() {
