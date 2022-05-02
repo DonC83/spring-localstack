@@ -90,7 +90,7 @@ jobs:
             --name=spring-localstack donc83/spring-localstack
           docker ps
           sleep 30
-          docker logs donc83/spring-localstack
+          docker logs spring-localstack
           curl -i http://localhost:8080/health
           ./k6 run ./perf-test/script.js
 #      - name: Start stack & service
