@@ -80,6 +80,7 @@ jobs:
         run: |
           docker-compose -f ./perf-test/docker-compose.yml up -d --remove-orphans
           docker ps
+          sleep(60)
           curl -i http://localhost:8080/health
 #      - name: Start service
 #        uses: addnab/docker-run-action@v3
