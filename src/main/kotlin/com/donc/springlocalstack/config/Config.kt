@@ -9,12 +9,13 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class Config(
     secretService: SecretService,
-    @Value("\${client.secret.name}") private val clientSecretName: String
+    @Value("\${client.secret.name}") private val clientSecretName: String,
 ) {
 
     private val secret = secretService
         .getSecretValue(clientSecretName, Secret::class.java).secret
         .let { secret ->
+            println("$$$$ $secretService")
             if (secret.equals("funnyman")) {
                 "alternative"
             } else {
