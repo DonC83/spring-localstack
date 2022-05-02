@@ -115,9 +115,7 @@ jobs:
 #          ./k6 run ./perf-test/script.js
       - name: Clean up
         if: always()
-        shell: base
         run: |
-#          docker-compose -f ./perf-test/docker-compose.yml down --remove-orphans
           make devstack.stop
 
 
