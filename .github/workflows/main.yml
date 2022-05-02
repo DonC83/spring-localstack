@@ -85,13 +85,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           run: |
-            docker run -d -p 8080:8080 \
-              --network devstack_backend \
-              -e "AWS_ENDPOINT=http://localstack:4566" \
-              -e "AWS_ACCESS_KEY_ID=foobar" \
-              -e "AWS_SECRET_ACCESS_KEY=foobar" \
-              --name=spring-localstack \
-              donc83/spring-localstack
+            docker run -d -p 8080:8080 --network devstack_backend -e "AWS_ENDPOINT=http://localstack:4566" -e "AWS_ACCESS_KEY_ID=foobar" -e "AWS_SECRET_ACCESS_KEY=foobar" --name=spring-localstack donc83/spring-localstack
       - name: Check container status
         shell: bash
         run: |
