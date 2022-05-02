@@ -80,6 +80,7 @@ jobs:
         run: |
           docker-compose -f ./perf-test/docker-compose.yml up -d --remove-orphans
           docker ps
+          curl -i http://localhost:8080/health
 #      - name: Start service
 #        uses: addnab/docker-run-action@v3
 #        with:
@@ -99,9 +100,7 @@ jobs:
         if: always()
         shell: base
         run: |
-          make devstack.stop
-          docker stop spring-localstack
-          docker container rm spring-localstack
+          docker-compose -f ./perf-test/docker-compose.yml down --remove-orphans
 
 
 
