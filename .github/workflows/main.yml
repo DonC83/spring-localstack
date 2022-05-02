@@ -78,18 +78,18 @@ jobs:
       - name: Start devstack
         uses: isbang/compose-action@v1.0.0
         with:
-          compose-file: './perf-test/docker-compose.yml'
+          compose-file: './devstack/docker-compose.yml'
       - name: Start service
         uses: addnab/docker-run-action@v3
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           run: |
-            docker run -p 8080:8080 \
+            docker run -d -p 8080:8080 \
               --network devstack_backend \
-              -e AWS_ENDPOINT=http://localstack:4566 \
-              -e AWS_ACCESS_KEY_ID=foobar \
-              -e AWS_SECRET_ACCESS_KEY=foobar \
+              -e "AWS_ENDPOINT=http://localstack:4566" \
+              -e "AWS_ACCESS_KEY_ID=foobar" \
+              -e "AWS_SECRET_ACCESS_KEY=foobar" \
               --name=spring-localstack \
               donc83/spring-localstack
       - name: Check container status
