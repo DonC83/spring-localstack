@@ -1,0 +1,24 @@
+---
+services:
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    networks:
+      - backend
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4571:4571"
+    healthcheck:
+      test: ["CMD", "bash", "-c", "awslocal dynamodb list-tables"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+    environment:
+      - SERVICES=dynamodb,secretsmanager
+      - DEFAULT_REGION=ap-southeast-2
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "./localstack/start.sh:/docker-entrypoint-initaws.d/start.sh"
+
+networks:
+  backend: {}

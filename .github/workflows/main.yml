@@ -75,21 +75,21 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Start devstack
+      - name: Start stack & service
         uses: isbang/compose-action@v1.0.0
         with:
-          compose-file: './devstack/docker-compose.yml'
-      - name: Start service
-        uses: addnab/docker-run-action@v3
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-          run: |
-            docker run -d -p 8080:8080 --network devstack_backend -e "AWS_ENDPOINT=http://localstack:4566" -e "AWS_ACCESS_KEY_ID=foobar" -e "AWS_SECRET_ACCESS_KEY=foobar" --name=spring-localstack donc83/spring-localstack
-      - name: Check container status
-        shell: bash
-        run: |
-          docker ps
+          compose-file: './perf-test/docker-compose.yml'
+#      - name: Start service
+#        uses: addnab/docker-run-action@v3
+#        with:
+#          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+#          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+#          run: |
+#            docker run -d -p 8080:8080 --network devstack_backend -e "AWS_ENDPOINT=http://localstack:4566" -e "AWS_ACCESS_KEY_ID=foobar" -e "AWS_SECRET_ACCESS_KEY=foobar" --name=spring-localstack donc83/spring-localstack
+#      - name: Check container status
+#        shell: bash
+#        run: |
+#          docker ps
       - name: Execute load test
         uses: grafana/k6-action@v0.2.0
         with:
