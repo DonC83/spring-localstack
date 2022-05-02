@@ -1,7 +1,7 @@
 import http from 'k6/http'
 import { fail, check, sleep } from 'k6';
 
-const baseUrl = "http://127.0.0.1:8080";
+const baseUrl = "http://localhost:8080";
 
 export const options = {
   vus: 10,
@@ -11,6 +11,7 @@ export const options = {
 export function setup() {
   let started = false;
   while (!started) {
+    console.log("Polling service")
     let resp = http.get(`${baseUrl}/health`);
     started = JSON.parse(resp.body) != null;
     sleep(10);
@@ -18,6 +19,7 @@ export function setup() {
 
   let healthStatus = "";
   while (healthStatus !== "UP") {
+    console.log("Checking service health")
     let resp = http.get(`${baseUrl}/health`);
     healthStatus = JSON.parse(resp.body).status;
     sleep(5);
