@@ -4,13 +4,11 @@ import com.donc.springlocalstack.model.Secret
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.stereotype.Service
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest
 import software.amazon.awssdk.services.secretsmanager.model.PutSecretValueRequest
 import software.amazon.awssdk.services.secretsmanager.model.SecretsManagerException
 
-@Service
 class SecretService(
     private val secretsManagerClient: SecretsManagerClient,
 ) {
