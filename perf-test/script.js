@@ -12,24 +12,24 @@ export const options = {
   },
 }
 
-// export function setup() {
-//   let started = false;
-//   while (!started) {
-//     console.log("Polling service")
-//     let resp = http.get(`${baseUrl}/health`);
-//     started = JSON.parse(resp.body) != null;
-//     sleep(10);
-//   }
-//
-//   let healthStatus = "";
-//   while (healthStatus !== "UP") {
-//     console.log("Checking service health")
-//     let resp = http.get(`${baseUrl}/health`);
-//     healthStatus = JSON.parse(resp.body).status;
-//     sleep(5);
-//   }
-//   console.log("Set up complete");
-// }
+export function setup() {
+  let started = false;
+  while (!started) {
+    console.log("Polling service")
+    let resp = http.get(`${baseUrl}/health`);
+    started = JSON.parse(resp.body) != null;
+    sleep(10);
+  }
+
+  let healthStatus = "";
+  while (healthStatus !== "UP") {
+    console.log("Checking service health")
+    let resp = http.get(`${baseUrl}/health`);
+    healthStatus = JSON.parse(resp.body).status;
+    sleep(5);
+  }
+  console.log("Set up complete");
+}
 
 export default function() {
 
