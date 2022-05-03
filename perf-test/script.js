@@ -6,6 +6,7 @@ const baseUrl = "http://localhost:8080";
 export const options = {
   vus: 10,
   duration: '30s',
+  setupTimeout: '60s',
   thresholds: {
     // the rate of successful checks should be higher than 90%
     checks: ['rate>0.9'],
@@ -17,6 +18,7 @@ export function setup() {
   while (!started) {
     console.log("Polling service")
     let resp = http.get(`${baseUrl}/health`);
+    console.log(resp.body)
     started = JSON.parse(resp.body) != null;
     sleep(10);
   }
@@ -26,6 +28,7 @@ export function setup() {
     console.log("Checking service health")
     let resp = http.get(`${baseUrl}/health`);
     healthStatus = JSON.parse(resp.body).status;
+    console.log(resp.body)
     sleep(5);
   }
   console.log("Set up complete");
