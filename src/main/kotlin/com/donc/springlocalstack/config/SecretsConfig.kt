@@ -1,6 +1,5 @@
 package com.donc.springlocalstack.config
 
-import com.donc.springlocalstack.repository.SecretService
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -15,11 +14,11 @@ class SecretsConfig(
     private val credentialsProvider: AwsCredentialsProvider,
 ) {
     @Bean
-    fun secretsClient(@Value("\${aws.region}") region: String): SecretService =
-        SecretsManagerClient.builder()
+    fun secretsClient(@Value("\${aws.region}") region: String): SecretsManagerClient {
+        return SecretsManagerClient.builder()
             .region(Region.of(region))
             .credentialsProvider(credentialsProvider)
             .endpointOverride(URI.create(endpoint))
             .build()
-            .let(::SecretService)
+    }
 }
