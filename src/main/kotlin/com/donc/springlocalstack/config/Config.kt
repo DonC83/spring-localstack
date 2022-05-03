@@ -13,7 +13,7 @@ class Config(
 ) {
 
     @Bean
-    fun secretVal() : String {
+    fun secretVal(): String {
         val secret = secretService
             .getSecretValue(clientSecretName, Secret::class.java).secret
             .let { secret ->
