@@ -88,35 +88,7 @@ jobs:
             -e "AWS_ACCESS_KEY_ID=foobar" \
             -e "AWS_SECRET_ACCESS_KEY=foobar" \
             --name=spring-localstack donc83/spring-localstack
-          docker logs spring-localstack
           ./k6 run ./perf-test/script.js
-#      - name: Start stack & service
-#        shell: bash
-#        run: |
-#          docker-compose -f ./perf-test/docker-compose.yml up -d --remove-orphans
-#          docker ps
-#          sleep 30
-#          docker logs spring-localstack
-#          curl -i http://localhost:8080/health
-#          ./k6 run ./perf-test/script.js
-#      - name: Start service
-#        uses: addnab/docker-run-action@v3
-#        with:
-#          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-#          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-#          run: |
-#            docker run -d -p 8080:8080 --network devstack_backend -e "AWS_ENDPOINT=http://localstack:4566" -e "AWS_ACCESS_KEY_ID=foobar" -e "AWS_SECRET_ACCESS_KEY=foobar" --name=spring-localstack donc83/spring-localstack
-#      - name: Check container status
-#        shell: bash
-#        run: |
-#          docker ps
-#      - name: Execute load test
-#        uses: grafana/k6-action@v0.2.0
-#        with:
-#          filename: perf-test/script.js
-#      - name: Runs performance tests
-#        run: |
-#          ./k6 run ./perf-test/script.js
       - name: Clean up
         if: always()
         run: |
