@@ -80,7 +80,7 @@ jobs:
           docker-compose -f ./devstack/docker-compose.yml up -d --remove-orphans
       - name: Install k6
         run: |
-          curl https://github.com/loadimpact/k6/releases/download/v0.26.2/k6-v0.26.2-linux64.tar.gz -L | tar xvz --strip-components 1
+          curl https://github.com/grafana/k6/releases/download/v0.38.1/k6-v0.38.1-linux-amd64.tar.gz -L | tar xvz --strip-components 1
       - name: Start the service and run tests
         run: |
           docker run -d -p 8080:8080 --network devstack_backend \
