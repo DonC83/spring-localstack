@@ -14,7 +14,6 @@ class AccountRepository(
     @Value("\${client.secret.name}") private val clientSecretName: String
 ) {
 
-
     private val secret = {
         secretService
             .getSecretValue(clientSecretName, Secret::class.java).secret
