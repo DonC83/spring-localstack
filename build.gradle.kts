@@ -4,7 +4,7 @@ plugins {
     id("org.springframework.boot") version "2.6.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("io.gitlab.arturbosch.detekt").version("1.20.0")
-    kotlin("jvm") version "1.6.20"
+    kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.20"
 }
 
