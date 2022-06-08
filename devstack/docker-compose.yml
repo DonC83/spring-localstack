@@ -21,4 +21,4 @@ services:
       - "./localstack/start.sh:/docker-entrypoint-initaws.d/start.sh"
 
 networks:
-  backend: {}
+  back-tier: {}
