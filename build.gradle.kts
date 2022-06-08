@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.6.4"
+    id("org.springframework.boot") version "2.7.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("io.gitlab.arturbosch.detekt").version("1.20.0")
-    kotlin("jvm") version "1.6.20"
+    kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.20"
 }
 
@@ -22,9 +22,9 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("software.amazon.awssdk:dynamodb:2.17.174")
-    implementation("software.amazon.awssdk:dynamodb-enhanced:2.17.174")
-    implementation("software.amazon.awssdk:secretsmanager:2.17.174")
+    implementation("software.amazon.awssdk:dynamodb:2.17.206")
+    implementation("software.amazon.awssdk:dynamodb-enhanced:2.17.206")
+    implementation("software.amazon.awssdk:secretsmanager:2.17.206")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
