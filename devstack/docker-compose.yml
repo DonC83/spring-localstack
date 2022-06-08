@@ -4,7 +4,7 @@ services:
     image: localstack/localstack
     container_name: localstack
     networks:
-      - backend
+      - back-tier
     ports:
       - "127.0.0.1:4566:4566"
       - "127.0.0.1:4571:4571"
