@@ -5,7 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.0"
     id("io.gitlab.arturbosch.detekt").version("1.20.0")
     kotlin("jvm") version "1.7.10"
-    kotlin("plugin.spring") version "1.7.10"
+    kotlin("plugin.spring") version "1.7.20"
 }
 
 group = "com.donc"
