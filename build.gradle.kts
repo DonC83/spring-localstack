@@ -22,9 +22,9 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("software.amazon.awssdk:dynamodb:2.17.254")
+    implementation("software.amazon.awssdk:dynamodb:2.25.56")
     implementation("software.amazon.awssdk:dynamodb-enhanced:2.18.5")
-    implementation("software.amazon.awssdk:dynamodb-enhanced:2.17.254")
+    implementation("software.amazon.awssdk:dynamodb-enhanced:2.25.56")
     implementation("software.amazon.awssdk:secretsmanager:2.20.17")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
